@@ -74,6 +74,11 @@ do
     RWOPT=-w
     shift
     FN=$1
+  elif [ "$1" == "-p" ]
+  then
+    DEVOPT="-p"
+    shift
+    DN=$1
   else
     OPTS="$OPTS $1"
   fi
@@ -120,10 +125,10 @@ esac
 if [ $RWOPT == -w ]
 then
 $PRECVT
-minipro $OPTS $RWOPT $RFILE
+minipro $OPTS $RWOPT $RFILE $DEVOPT "$DN"
 else
 # If reading, execute and then do post cmd
-minipro $OPTS $RWOPT $RFILE
+minipro $OPTS $RWOPT $RFILE $DEVOPT "$DN"
 $POSTCVT
 fi
 
